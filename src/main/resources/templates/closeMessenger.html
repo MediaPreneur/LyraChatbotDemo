@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Fin du paiement</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.js"
+  integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<script>
+(function(d, s, id){
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'Messenger'));
+</script>  
+<script>
+function debugg(str){$('body').append("<br/>"+str);}
+
+window.extAsyncInit = function() {
+	  MessengerExtensions.requestCloseBrowser(function success() {
+    }, function error(err) {
+    });
+  };
+
+
+$( document ).ready(function() {
+	  
+	});
+
+</script>
+</body>
+</html>

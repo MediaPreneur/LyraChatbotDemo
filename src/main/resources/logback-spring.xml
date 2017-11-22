@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level| %msg%n"/>
+    <property name="FILE_LOG_LOCATION" value="/opt/lyra/java/chatbot/logs"/>
+    
+    <appender name="SPRING_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_LOCATION}/spring.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/spring.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>12</maxHistory>
+		</rollingPolicy>
+	</appender>
+    
+    <appender name="APP_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_LOCATION}/app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>12</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	<appender name="WEBHOOK_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_LOCATION}/webhook.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/webhook.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>12</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	<appender name="ERROR_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_LOCATION}/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>12</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	<appender name="RQ_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_LOCATION}/requests.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/requests.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>12</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	<logger name="org.apache.coyote" level="WARN" additivity="false"/>
+    
+    <logger name="org.springframework" level="DEBUG" additivity="false">
+    	<appender-ref ref="SPRING_FILE"/>
+    </logger>
+    
+    <!-- <logger name="org.springframework" level="DEBUG">
+    	<appender-ref ref="APP_FILE"/>
+    </logger> -->
+    
+	<logger name="org.apache.tomcat" level="WARN" />
+    
+    <logger name="app" level="DEBUG" additivity="false">
+    	<appender-ref ref="APP_FILE"/>
+    </logger>
+    
+     <logger name="mock" level="INFO">
+    </logger>
+    
+    <logger name="webhook" level="DEBUG">
+    	<appender-ref ref="WEBHOOK_FILE"/>
+    </logger>
+    
+    <logger name="error" level="ERROR">
+    	<appender-ref ref="ERROR_FILE"/>
+    </logger>
+    
+    <logger name="requests" level="WARN" additivity="false">
+    	<appender-ref ref="RQ_FILE"/>
+    </logger>
+    
+    <root level="WARN">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
