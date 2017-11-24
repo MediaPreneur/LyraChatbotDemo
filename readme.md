@@ -1,5 +1,4 @@
 # What is this repository for?
----
 
 This repository is intended to demonstrate how a merchant can use Payzen payments in a chatbot.
 
